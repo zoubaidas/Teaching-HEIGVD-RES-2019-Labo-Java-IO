@@ -6,4 +6,5 @@ cache:
 
 script:
   - echo "RESBot at work... let's see if code compiles and tests pass!"
+  - cd LabJavaIO
   - mvn clean package
