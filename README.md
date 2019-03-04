@@ -1,13 +1,20 @@
-# Teaching-HEIGVD-RES-2018-Labo-01
+# Teaching-HEIGVD-RES-2019-Labo-Java-IO
 
+### About the 2019 version of this lab
 
-### About the 2018 version of this lab
+We changed the project structure. In previous editions, there was a "test" project (with its own pom.xml), a "production" project (with its own pom.xml) and a top-level "build" project. This is what you will see in the webcasts. This year, we have moved to a single project, with production and test packages.
+
+**Warning: do NOT change the code in the test packages**
+
+### About previous versions of this lab
 
 Before reading this documentation and diving into the code, you should watch [this webcast](https://www.youtube.com/watch?v=qgncWAUqcbY&index=1&list=PLfKkysTy70QYD00EqEabdwyDNTPwLcsFV), which shows a **demo** of the application that you will implement. Later on, you might also watch [this webcast](https://www.youtube.com/watch?v=v_ZpVgf0lGc&index=2&list=PLfKkysTy70QYD00EqEabdwyDNTPwLcsFV), which gives you some hints about the **code structure**.
 
 If you watch carefully, you will see that in 2015, we were using a web service called [iheartquotes](http://www.iheartquotes.com/) to fetch dynamic text data. This service is now down, so this year we had to look for [a replacement](http://www.icndb.com/api/). We also had to adapt the code of the starter project a bit. You will see why and how when in the commented source code.
 
 We also fixed an issue with previous versions of the lab. In the past, our specification was not correct when talking about **depth-first traversal**. Our unit tests specified a wrong behaviour. We have fixed them. For these reasons, there will be some differences in the console output, but nothing extraordinary.
+
+
 
 ![image](./diagrams/chuck.png)
 
@@ -28,37 +35,29 @@ If your application is fully implemented you should have the following result on
 
 
 ```
-HEIGVD $ mvn clean install
 [INFO] Scanning for projects...
-[INFO] ------------------------------------------------------------------------
-[INFO] Reactor Build Order:
 [INFO] 
-[INFO] Lab01App-code
-[INFO] Lab01App-tests
-[INFO] Lab01App-build
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building Lab01App-code 1.0-SNAPSHOT
-[INFO] ------------------------------------------------------------------------
+[INFO] --------------------< ch.heigvd.res.io:lab-java-io >--------------------
+[INFO] Building RES Lab Java IO 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
 
 ... (skipping some of the log output)
 
-Results :
-
-Tests run: 27, Failures: 0, Errors: 0, Skipped: 0
+[INFO] Running ch.heigvd.res.labio.impl.explorers.DFSFileExplorerTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.15 s - in ch.heigvd.res.labio.impl.explorers.DFSFileExplorerTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 27, Failures: 0, Errors: 0, Skipped: 0
 
 ... (skipping some of the log output)
 
-[INFO] ------------------------------------------------------------------------
-[INFO] Reactor Summary:
-[INFO] 
-[INFO] Lab01App-code ..................................... SUCCESS [2.477s]
-[INFO] Lab01App-tests .................................... SUCCESS [8.811s]
-[INFO] Lab01App-build .................................... SUCCESS [0.004s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-
+[INFO] Total time: 7.497 s
+[INFO] Finished at: 2019-03-04T08:12:55+01:00
+[INFO] ------------------------------------------------------------------------
 ```
 
 #### B. When running the application
