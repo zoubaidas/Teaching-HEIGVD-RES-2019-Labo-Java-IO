@@ -32,9 +32,7 @@ If you watch carefully, you will see that in 2015, we were using a web service c
 We also fixed an issue with previous versions of the lab. In the past, our specification was not correct when talking about **depth-first traversal**. Our unit tests specified a wrong behaviour. We have fixed them. For these reasons, there will be some differences in the console output, but nothing extraordinary.
 
 
-
 ![image](./diagrams/chuck.png)
-
 
 ### Introduction
 
