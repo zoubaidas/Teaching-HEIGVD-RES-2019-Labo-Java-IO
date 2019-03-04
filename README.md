@@ -175,7 +175,7 @@ $ find ./workspace
 ./workspace/quotes/quote-8.utf8.out
 ```
 
-You can then compare `quote-8.utf8` with `quote-8.utf8` to see the text received as input (from the web service) and the text produced as output (by your program).
+You can then compare `quote-8.utf8.out` with `quote-8.utf8` to see the text received as input (from the web service) and the text produced as output (by your program).
 
 
 ### Tasks
