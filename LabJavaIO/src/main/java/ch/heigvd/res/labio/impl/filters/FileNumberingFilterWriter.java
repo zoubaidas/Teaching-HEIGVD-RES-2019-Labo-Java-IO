@@ -17,6 +17,9 @@ import java.util.logging.Logger;
  */
 public class FileNumberingFilterWriter extends FilterWriter {
 
+  private int lineNumber = 1;
+  private boolean backslashR = false;
+
   private static final Logger LOG = Logger.getLogger(FileNumberingFilterWriter.class.getName());
 
   public FileNumberingFilterWriter(Writer out) {
@@ -25,17 +28,43 @@ public class FileNumberingFilterWriter extends FilterWriter {
 
   @Override
   public void write(String str, int off, int len) throws IOException {
-    throw new UnsupportedOperationException("The student has not implemented this method yet.");
+    write(str.toCharArray(), off, len);
   }
 
   @Override
   public void write(char[] cbuf, int off, int len) throws IOException {
-    throw new UnsupportedOperationException("The student has not implemented this method yet.");
+    for (int i = off; i < off + len; ++i)
+      write(cbuf[i]);
   }
 
   @Override
   public void write(int c) throws IOException {
-    throw new UnsupportedOperationException("The student has not implemented this method yet.");
-  }
+    char tabChar = '\t';
 
+    //Première ligne (1 fois)
+    if (lineNumber == 1) { //Si on est à la première ligne, on insére le numéro
+      super.write(String.valueOf(lineNumber++) + tabChar);
+      super.write(c);
+
+    //Si le caractére est \n ou \r suivi de \n
+    } else if ('\n' == (char) c) {
+      backslashR = false;
+      super.write(c);
+      super.write(String.valueOf(lineNumber++) + tabChar);
+
+    //Si le caractére est \r (mais on ne sait pas ce qu'il ya après)
+    } else if ('\r' == (char) c) {
+      backslashR = true;
+      super.write(c);
+
+    //Caractére quelquonque qprès un \r
+    } else if (backslashR) {
+      backslashR = false;
+      super.write(String.valueOf(lineNumber++) + tabChar);
+      super.write(c);
+
+     //Caractère quelquonque
+    } else
+      super.write(c);
+  }
 }
